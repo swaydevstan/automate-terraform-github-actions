@@ -31,7 +31,7 @@ resource "aws_instance" "web" {
   ami                    = "ami-09e67e426f25ce0d7"
   instance_type          = "t2.micro"
   vpc_security_group_ids = [aws_security_group.web-sg.id]
-  count                  = 2
+
 
   user_data = <<-EOF
               #!/bin/bash
@@ -60,6 +60,6 @@ resource "aws_security_group" "web-sg" {
   }
 }
 
-# output "web-address" {
-#   value = "${aws_instance.web.public_dns}:8080"
-# }
+output "web-address" {
+  value = "${aws_instance.web.public_dns}:8080"
+}
